@@ -6,5 +6,6 @@ export interface Ingredient {
   weight: number,
   weightUnit: UnitType,
   price: number,
-  priceUnit: UnitType
+  priceUnit: UnitType,
+  weightNeeded: number
 }

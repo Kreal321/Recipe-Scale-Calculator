@@ -12,6 +12,8 @@ import { MdbDropdownModule } from 'mdb-angular-ui-kit/dropdown';
 import { MdbRippleModule } from 'mdb-angular-ui-kit/ripple';
 import { UnitBtnComponent } from './components/unit-btn/unit-btn.component';
 import { FormsModule } from "@angular/forms";
+import { ResultsListComponent } from './components/results-list/results-list.component';
+import { IngredientResultItemComponent } from './components/ingredient-result-item/ingredient-result-item.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { FormsModule } from "@angular/forms";
     CalculatorInfoComponent,
     IngredientsListComponent,
     IngredientItemComponent,
-    UnitBtnComponent
+    UnitBtnComponent,
+    ResultsListComponent,
+    IngredientResultItemComponent
   ],
   imports: [
     CommonModule,
