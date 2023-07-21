@@ -18,8 +18,6 @@ export class PageRecipeCalculatorComponent {
   recipeBook: RecipeBook | undefined;
   recipe: Recipe | undefined;
 
-  calculation: Calculation | undefined;
-
   constructor(
     private recipeService: RecipeService,
     private route: ActivatedRoute,
@@ -41,10 +39,5 @@ export class PageRecipeCalculatorComponent {
       }
     })
   }
-
-  newCalculation(calculation: Calculation): void {
-    this.calculation = calculation;
-  }
-
 
 }

@@ -2,6 +2,12 @@
   <div class="card-body">
     <h5 class="card-title">Result</h5>
 
+    <div class="d-flex" >
+      <button class="btn btn-success me-2" (click)="doBestMedianCalculation()">Find Best Median</button>
+    </div>
+
+    <hr>
+
     <ul class="list-group list-group-light">
       <li class="list-group-item fw-bold border-0">
         <div class="row align-items-center text-center">
@@ -9,18 +15,15 @@
           <div class="col-2">Price</div>
           <div class="col-2">Needed</div>
           <div class="col-2">Actual</div>
-          <div class="col-3">Diff</div>
+          <div class="col-2">Diff</div>
+          <div class="col-1">Action</div>
         </div>
       </li>
-      <li class="list-group-item py-2" *ngFor="let ingredient of calculation?.ingredients">
-        <app-ingredient-result-item [ingredient]="ingredient"></app-ingredient-result-item>
+      <li class="list-group-item py-2" *ngFor="let ingredient of recipe?.ingredients">
+        <app-ingredient-result-item [ingredient]="ingredient" [calculate]="calculate"></app-ingredient-result-item>
       </li>
-
     </ul>
 
-    <hr>
-    <div class="d-flex justify-content-center" >
-      <button class="btn btn-success me-2">Calculate</button>
-    </div>
+
   </div>
 </div>
