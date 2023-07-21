@@ -12,7 +12,7 @@
           <div class="col-3">Diff</div>
         </div>
       </li>
-      <li class="list-group-item py-2" *ngFor="let ingredient of recipe?.ingredients">
+      <li class="list-group-item py-2" *ngFor="let ingredient of calculation?.ingredients">
         <app-ingredient-result-item [ingredient]="ingredient"></app-ingredient-result-item>
       </li>
 

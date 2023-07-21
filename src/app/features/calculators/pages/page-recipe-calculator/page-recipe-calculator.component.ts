@@ -5,6 +5,7 @@ import { RecipeBook } from "../../../../core/models/recipeBook.model";
 
 import Swal from 'sweetalert2'
 import {Recipe} from "../../../../core/models/recipe.model";
+import {Calculation} from "../../../../core/models/calculation.model";
 
 
 @Component({
@@ -16,6 +17,8 @@ export class PageRecipeCalculatorComponent {
 
   recipeBook: RecipeBook | undefined;
   recipe: Recipe | undefined;
+
+  calculation: Calculation | undefined;
 
   constructor(
     private recipeService: RecipeService,
@@ -37,6 +40,10 @@ export class PageRecipeCalculatorComponent {
         })
       }
     })
+  }
+
+  newCalculation(calculation: Calculation): void {
+    this.calculation = calculation;
   }
 
 
