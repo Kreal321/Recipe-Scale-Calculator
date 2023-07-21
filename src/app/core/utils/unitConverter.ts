@@ -39,4 +39,42 @@ export class UnitConverter {
     return 0;
   }
 
+  static isMetric(unit: UnitType): boolean {
+    switch(unit) {
+      case UnitType.MCG:
+      case UnitType.MG:
+      case UnitType.G:
+      case UnitType.KG:
+        return true;
+      default:
+        return false;
+    }
+  }
+
+  static metricUnitNext(unit: UnitType): UnitType {
+    switch(unit) {
+      case UnitType.MCG:
+        return UnitType.MG;
+      case UnitType.MG:
+        return UnitType.G;
+      case UnitType.G:
+        return UnitType.KG;
+      default:
+        return unit;
+    }
+  }
+
+  static metricUnitPrev(unit: UnitType): UnitType {
+    switch(unit) {
+      case UnitType.KG:
+        return UnitType.G;
+      case UnitType.G:
+        return UnitType.MG;
+      case UnitType.MG:
+        return UnitType.MCG;
+      default:
+        return unit;
+    }
+  }
+
 }

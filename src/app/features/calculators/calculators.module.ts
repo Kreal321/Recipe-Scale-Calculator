@@ -16,6 +16,7 @@ import { IngredientResultItemComponent } from './components/ingredient-result-it
 import { CalculationResultsListComponent } from './components/calculation-results-list/calculation-results-list.component';
 import { UseallIngredientBtnComponent } from './components/useall-ingredient-btn/useall-ingredient-btn.component';
 import { CalculationHistoryComponent } from './components/calculation-history/calculation-history.component';
+import { WeightUnitComponent } from './components/weight-unit/weight-unit.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CalculationHistoryComponent } from './components/calculation-history/ca
     IngredientResultItemComponent,
     CalculationResultsListComponent,
     UseallIngredientBtnComponent,
-    CalculationHistoryComponent
+    CalculationHistoryComponent,
+    WeightUnitComponent
   ],
   imports: [
     CommonModule,
