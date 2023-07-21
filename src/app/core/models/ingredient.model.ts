@@ -7,4 +7,5 @@ export interface Ingredient {
   weightUnit: UnitType,
   price: number,
   priceUnit: UnitType,
+  isAdditional: boolean
 }

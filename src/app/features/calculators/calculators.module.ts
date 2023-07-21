@@ -15,6 +15,7 @@ import { FormsModule } from "@angular/forms";
 import { IngredientResultItemComponent } from './components/ingredient-result-item/ingredient-result-item.component';
 import { CalculationResultsListComponent } from './components/calculation-results-list/calculation-results-list.component';
 import { UseallIngredientBtnComponent } from './components/useall-ingredient-btn/useall-ingredient-btn.component';
+import { CalculationHistoryComponent } from './components/calculation-history/calculation-history.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { UseallIngredientBtnComponent } from './components/useall-ingredient-btn
     UnitBtnComponent,
     IngredientResultItemComponent,
     CalculationResultsListComponent,
-    UseallIngredientBtnComponent
+    UseallIngredientBtnComponent,
+    CalculationHistoryComponent
   ],
   imports: [
     CommonModule,

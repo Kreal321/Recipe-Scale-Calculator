@@ -27,18 +27,21 @@ export class CalculationResultsListComponent implements OnInit{
   @Input() valueHasChanged: boolean | undefined;
   @Output() valueHasChangedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  calculation: Calculation = {} as Calculation;
+  @Input() calculation: Calculation | undefined;
+  @Output() calculationChange: EventEmitter<Calculation> = new EventEmitter<Calculation>();
 
   ngOnInit(): void {
-
+    this.calculation = {} as Calculation;
   }
 
   calculateBestMedianTotalWeight(unit: UnitType): number {
     let values: number[] = [];
     this.recipe?.ingredients.forEach((ingredient: Ingredient) => {
-      let expectedTotalValue: number = UnitConverter.getConvertedWeight(ingredient, unit) / ingredient.proportion;
-      if (expectedTotalValue != 0) {
-        values.push(expectedTotalValue);
+      if (!ingredient.isAdditional) {
+        let expectedTotalValue: number = UnitConverter.getConvertedWeight(ingredient, unit) / ingredient.proportion;
+        if (expectedTotalValue != 0) {
+          values.push(expectedTotalValue);
+        }
       }
     })
 
@@ -59,6 +62,7 @@ export class CalculationResultsListComponent implements OnInit{
     this.calculation!.totalWeight = this.calculateBestMedianTotalWeight(this.calculation!.weightUnit);
     this.calculation = {...this.calculation!};
     this.valueHasChangedChange.emit(false);
+    this.calculationChange.emit(this.calculation);
   }
 
   doUseAllCalculation(ingredient: Ingredient) {
@@ -66,5 +70,6 @@ export class CalculationResultsListComponent implements OnInit{
     this.calculation!.totalWeight = UnitConverter.getConvertedWeight(ingredient, this.calculation!.weightUnit) / ingredient.proportion;
     this.calculation = {...this.calculation!};
     this.valueHasChangedChange.emit(false);
+    this.calculationChange.emit(this.calculation);
   }
 }
