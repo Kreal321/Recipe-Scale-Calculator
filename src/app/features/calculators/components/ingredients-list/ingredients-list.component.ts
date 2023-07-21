@@ -12,4 +12,10 @@ export class IngredientsListComponent {
   @Input() recipe: Recipe | undefined
   // @Output() recipeChange: EventEmitter<Recipe> = new EventEmitter<Recipe>();
 
+  @Input() valueHasChanged: boolean | undefined;
+  @Output() valueHasChangedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  valueChanged() {
+    this.valueHasChangedChange.emit(true);
+  }
 }

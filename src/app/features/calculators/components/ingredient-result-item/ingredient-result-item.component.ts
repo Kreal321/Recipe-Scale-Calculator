@@ -10,10 +10,10 @@ import {Subject} from "rxjs";
   templateUrl: './ingredient-result-item.component.html',
   styleUrls: ['./ingredient-result-item.component.scss']
 })
-export class IngredientResultItemComponent implements OnInit{
+export class IngredientResultItemComponent implements OnChanges{
 
   @Input() ingredient: Ingredient | undefined;
-  @Input() calculate: Subject<Calculation> | undefined;
+  @Input() calculation: Calculation | undefined;
 
   weightNeeded: number | undefined;
   weightActual: number | undefined;
@@ -21,12 +21,12 @@ export class IngredientResultItemComponent implements OnInit{
   color: string = "col-2 ";
   weightUnit: UnitType | undefined;
 
-  ngOnInit(): void {
-    this.calculate!.subscribe((calculation:Calculation)=>{
-      this.weightUnit = calculation.weightUnit;
-      this.weightActual = UnitConverter.getConvertedWeight(this.ingredient!, calculation.weightUnit);
-      this.weightNeeded = calculation.totalWeight * this.ingredient!.proportion;
+  ngOnChanges(changes: SimpleChanges): void {
+      this.weightUnit = this.calculation!.weightUnit;
+      this.weightActual = UnitConverter.getConvertedWeight(this.ingredient!, this.weightUnit);
+      this.weightNeeded = this.calculation!.totalWeight * this.ingredient!.proportion;
       this.weightDiff = this.weightActual - this.weightNeeded;
+
       this.color = "col-2 ";
       if (this.weightUnit == UnitType.G) {
         if (this.weightDiff > 100) {
@@ -41,14 +41,6 @@ export class IngredientResultItemComponent implements OnInit{
           this.color += "text-danger";
         }
       }
-    })
-  }
-
-  setIngredient(): void {
-    let calculation: Calculation = {} as Calculation;
-    calculation.weightUnit = this.weightUnit!;
-    calculation.totalWeight = UnitConverter.getConvertedWeight(this.ingredient!, calculation.weightUnit) / this.ingredient!.proportion;
-    this.calculate!.next(calculation)
   }
 
 }

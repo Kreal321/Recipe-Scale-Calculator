@@ -16,6 +16,4 @@ export class UnitBtnComponent {
   changeUnit(unit: UnitType) {
     this.unitChange.emit(unit);
   }
-
-  protected readonly UnitType = UnitType;
 }

@@ -1,4 +1,13 @@
-import {AfterViewChecked, AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {
+  AfterViewChecked,
+  AfterViewInit,
+  Component, EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges
+} from '@angular/core';
 import {Calculation} from "../../../../core/models/calculation.model";
 import {Ingredient} from "../../../../core/models/ingredient.model";
 import {Recipe} from "../../../../core/models/recipe.model";
@@ -11,12 +20,18 @@ import {UnitType} from "../../../../core/enums/unitType.enum";
   templateUrl: './calculation-results-list.component.html',
   styleUrls: ['./calculation-results-list.component.scss']
 })
-export class CalculationResultsListComponent {
+export class CalculationResultsListComponent implements OnInit{
 
   @Input() recipe: Recipe | undefined;
 
-  calculate: Subject<Calculation> = new Subject<Calculation>();
+  @Input() valueHasChanged: boolean | undefined;
+  @Output() valueHasChangedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  calculation: Calculation = {} as Calculation;
+
+  ngOnInit(): void {
+
+  }
 
   calculateBestMedianTotalWeight(unit: UnitType): number {
     let values: number[] = [];
@@ -40,9 +55,16 @@ export class CalculationResultsListComponent {
   }
 
   doBestMedianCalculation(): void {
-    let calculation: Calculation = {} as Calculation;
-    calculation.weightUnit = this.recipe!.unit;
-    calculation.totalWeight = this.calculateBestMedianTotalWeight(calculation.weightUnit);
-    this.calculate.next(calculation);
+    this.calculation!.weightUnit = this.recipe!.unit;
+    this.calculation!.totalWeight = this.calculateBestMedianTotalWeight(this.calculation!.weightUnit);
+    this.calculation = {...this.calculation!};
+    this.valueHasChangedChange.emit(false);
+  }
+
+  doUseAllCalculation(ingredient: Ingredient) {
+    this.calculation!.weightUnit = this.recipe!.unit;
+    this.calculation!.totalWeight = UnitConverter.getConvertedWeight(ingredient, this.calculation!.weightUnit) / ingredient.proportion;
+    this.calculation = {...this.calculation!};
+    this.valueHasChangedChange.emit(false);
   }
 }

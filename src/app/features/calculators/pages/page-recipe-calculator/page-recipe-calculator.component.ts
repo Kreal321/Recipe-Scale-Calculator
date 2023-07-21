@@ -5,7 +5,6 @@ import { RecipeBook } from "../../../../core/models/recipeBook.model";
 
 import Swal from 'sweetalert2'
 import {Recipe} from "../../../../core/models/recipe.model";
-import {Calculation} from "../../../../core/models/calculation.model";
 
 
 @Component({
@@ -17,6 +16,8 @@ export class PageRecipeCalculatorComponent {
 
   recipeBook: RecipeBook | undefined;
   recipe: Recipe | undefined;
+
+  valueHasChanged: boolean = true;
 
   constructor(
     private recipeService: RecipeService,

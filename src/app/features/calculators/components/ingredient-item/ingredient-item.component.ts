@@ -11,4 +11,10 @@ export class IngredientItemComponent {
   @Input() ingredient: Ingredient | undefined;
   @Output() ingredientChange: EventEmitter<Ingredient> = new EventEmitter<Ingredient>();
 
+  @Output() valueHasChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  valueChanged(value: number) {
+    this.valueHasChanged.emit(true);
+  }
+
 }

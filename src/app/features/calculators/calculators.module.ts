@@ -14,6 +14,7 @@ import { UnitBtnComponent } from './components/unit-btn/unit-btn.component';
 import { FormsModule } from "@angular/forms";
 import { IngredientResultItemComponent } from './components/ingredient-result-item/ingredient-result-item.component';
 import { CalculationResultsListComponent } from './components/calculation-results-list/calculation-results-list.component';
+import { UseallIngredientBtnComponent } from './components/useall-ingredient-btn/useall-ingredient-btn.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CalculationResultsListComponent } from './components/calculation-result
     IngredientItemComponent,
     UnitBtnComponent,
     IngredientResultItemComponent,
-    CalculationResultsListComponent
+    CalculationResultsListComponent,
+    UseallIngredientBtnComponent
   ],
   imports: [
     CommonModule,

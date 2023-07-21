@@ -13,7 +13,7 @@
         </div>
       </li>
       <li class="list-group-item py-2" *ngFor="let ingredient of recipe?.ingredients; let i = index">
-        <app-ingredient-item [(ingredient)]="recipe!.ingredients[i]"></app-ingredient-item>
+        <app-ingredient-item [(ingredient)]="recipe!.ingredients[i]" (valueHasChanged)="valueChanged()"></app-ingredient-item>
       </li>
 
     </ul>

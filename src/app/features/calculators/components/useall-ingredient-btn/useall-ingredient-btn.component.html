@@ -1,0 +1,18 @@
+<div mdbDropdown class="dropdown">
+  <div class="btn-group">
+    <button type="button" class="btn btn-primary">Use All</button>
+    <button
+      class="btn btn-primary dropdown-toggle"
+      type="button"
+      id="unitMenuBtn"
+      aria-expanded="false"
+      mdbDropdownToggle
+    >
+      {{ingredient?.name}}
+    </button>
+
+  </div>
+  <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="unitMenuBtn">
+    <li><a class="dropdown-item" *ngFor="let i of ingredients"  (click)= selectIngredient(i)>{{i.name}}</a></li>
+  </ul>
+</div>

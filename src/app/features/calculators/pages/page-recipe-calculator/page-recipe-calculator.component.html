@@ -4,10 +4,10 @@
       <app-calculator-info [recipeBook]="recipeBook" [(recipe)]="recipe"></app-calculator-info>
     </div>
     <div class="col-lg-8 col-md-12 col-sm-12 my-2">
-      <app-ingredients-list [recipe]="recipe"></app-ingredients-list>
+      <app-ingredients-list [recipe]="recipe" [(valueHasChanged)]="valueHasChanged"></app-ingredients-list>
     </div>
-    <div class="col-12 my-2">
-      <app-calculation-results-list [recipe]="recipe"></app-calculation-results-list>
+    <div class="col-12 my-2" *ngIf="recipe">
+      <app-calculation-results-list [recipe]="recipe" [(valueHasChanged)]="valueHasChanged"></app-calculation-results-list>
     </div>
   </div>
 </div>
