@@ -18,7 +18,7 @@ export class IngredientResultItemComponent implements OnChanges{
   weightNeeded: number | undefined;
   weightActual: number | undefined;
   weightDiff: number | undefined;
-  color: string = "col-2 ";
+  color: string = "col-4 col-md-2 ";
   weightUnit: UnitType | undefined;
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -27,7 +27,7 @@ export class IngredientResultItemComponent implements OnChanges{
       this.weightNeeded = this.calculation!.totalWeight * this.ingredient!.proportion;
       this.weightDiff = this.weightActual - this.weightNeeded;
 
-      this.color = "col-2 ";
+      this.color = "col-4 col-md-2 ";
       if (this.weightUnit == UnitType.G) {
         if (this.weightDiff > 100) {
           this.color += "text-success";
