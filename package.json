@@ -1,12 +1,13 @@
 {
   "name": "recipe-scale-calculator",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --base-href https://kreal321.github.io/Recipe-Scale-Calculator/",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy": "ngh --dir=dist/recipe-scale-calculator"
   },
   "private": true,
   "dependencies": {

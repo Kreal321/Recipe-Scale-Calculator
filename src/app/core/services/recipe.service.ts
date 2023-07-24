@@ -13,7 +13,7 @@ export class RecipeService {
   ) { }
 
   getRecipe(name: string | null): Observable<RecipeBook> {
-    return this.http.get<RecipeBook>('/assets/recipes/' + name + '.json');
+    return this.http.get<RecipeBook>('./assets/recipes/' + name + '.json');
   }
 
 }
