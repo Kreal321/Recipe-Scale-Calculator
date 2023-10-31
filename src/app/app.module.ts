@@ -12,7 +12,7 @@ import { FooterComponent } from './core/components/footer/footer.component';
 
 import { HomeModule } from "./features/home/home.module";
 import { CalculatorsModule } from "./features/calculators/calculators.module";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 
 

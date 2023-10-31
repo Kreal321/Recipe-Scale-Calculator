@@ -17,6 +17,7 @@ import { CalculationResultsListComponent } from './components/calculation-result
 import { UseallIngredientBtnComponent } from './components/useall-ingredient-btn/useall-ingredient-btn.component';
 import { CalculationHistoryComponent } from './components/calculation-history/calculation-history.component';
 import { WeightUnitComponent } from './components/weight-unit/weight-unit.component';
+import { CalculationResultComponent } from './components/calculation-result/calculation-result.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { WeightUnitComponent } from './components/weight-unit/weight-unit.compon
     CalculationResultsListComponent,
     UseallIngredientBtnComponent,
     CalculationHistoryComponent,
-    WeightUnitComponent
+    WeightUnitComponent,
+    CalculationResultComponent
   ],
   imports: [
     CommonModule,
