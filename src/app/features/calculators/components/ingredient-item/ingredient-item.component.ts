@@ -13,7 +13,7 @@ export class IngredientItemComponent {
 
   @Output() valueHasChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  valueChanged(value: number) {
+  valueChanged(value: any) {
     this.valueHasChanged.emit(true);
   }
 

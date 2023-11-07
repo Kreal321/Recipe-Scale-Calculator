@@ -4,7 +4,7 @@
     <input type="text" class="form-control" [(ngModel)]="ingredient!.weight" (ngModelChange)="valueChanged($event)"/>
   </div>
   <div class="col-4 col-md-2">
-    <app-unit-btn [(unit)]="ingredient!.weightUnit"></app-unit-btn>
+    <app-unit-btn [(unit)]="ingredient!.weightUnit" (valueHasChanged)="valueChanged($event)"></app-unit-btn>
   </div>
   <div class="col-2 d-none d-md-block">
     <input type="text" class="form-control" [(ngModel)]="ingredient!.price" (ngModelChange)="valueChanged($event)"/>

@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Recipe} from "../../../../core/models/recipe.model";
 import {Calculation} from "../../../../core/models/calculation.model";
+import {RecipeService} from "../../../../core/services/recipe.service";
 
 @Component({
   selector: 'app-ingredients-list',
@@ -15,7 +16,13 @@ export class IngredientsListComponent {
   @Input() valueHasChanged: boolean | undefined;
   @Output() valueHasChangedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  constructor(
+    private recipeService: RecipeService,
+  ) {
+  }
+
   valueChanged() {
     this.valueHasChangedChange.emit(true);
+    this.recipeService.saveRecipeCache('Auto Save', this.recipe!);
   }
 }
