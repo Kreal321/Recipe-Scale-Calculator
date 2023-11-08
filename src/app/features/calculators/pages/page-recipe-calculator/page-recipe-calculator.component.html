@@ -6,7 +6,7 @@
           <app-calculator-info [recipeBook]="recipeBook" [(recipe)]="recipe"></app-calculator-info>
         </div>
         <div class="col-12 col-md-6 col-lg-12 mb-4">
-          <app-calculation-history [calculation]="calculation" [(recipe)]="recipe"></app-calculation-history>
+          <app-calculation-history [(recipe)]="recipe"></app-calculation-history>
         </div>
         <div class="col-12 col-md-6 col-lg-12 mb-4" *ngIf="calculation">
           <app-calculation-result [calculation]="calculation"></app-calculation-result>

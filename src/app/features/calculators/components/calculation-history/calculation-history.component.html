@@ -3,7 +3,10 @@
     <h5 class="card-title">Calculation History</h5>
     <ul class="list-group list-group-light mt-2">
       <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let cache of caches">
-        {{cache}}
+        <span>
+          {{cache}}
+          <span class="badge badge-primary ms-1" *ngIf="currentCache == cache">Active</span>
+        </span>
         <div>
           <button type="button" class="btn btn-success btn-floating me-1" mdbRipple (click)="loadRecipeCache(cache)" *ngIf="currentCache != cache">
             <i class="fas fa-sync-alt"></i>

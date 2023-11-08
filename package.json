@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --base-href https://kreal321.github.io/Recipe-Scale-Calculator/",
+    "build": "ng build --base-href https://catfood.kasonxu.com",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "deploy": "ngh --dir=dist/recipe-scale-calculator"

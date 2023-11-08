@@ -14,7 +14,6 @@ import Swal from "sweetalert2";
 })
 export class CalculationHistoryComponent {
 
-  @Input() calculation: Calculation | undefined;
   @Input() recipe: Recipe | undefined;
   @Output() recipeChange: EventEmitter<Recipe> = new EventEmitter<Recipe>();
 
