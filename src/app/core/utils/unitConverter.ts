@@ -6,10 +6,21 @@ export class UnitConverter {
     return this.convertWeight(ingredient.weight, ingredient.weightUnit, targetUnit);
   }
 
+  /**
+   * Convert weight from one unit to another
+   *
+   * @param weight
+   * @param unit
+   * @param targetUnit
+   */
   static convertWeight(weight: number, unit: UnitType, targetUnit: UnitType): number {
     switch(targetUnit) {
       case UnitType.G:
         switch(unit) {
+          case UnitType.MCG:
+            return weight / 1000000;
+          case UnitType.MG:
+            return weight / 1000;
           case UnitType.G:
             return weight;
           case UnitType.KG:
@@ -19,9 +30,11 @@ export class UnitConverter {
           case UnitType.LB:
             return weight * 453.592;
           default:
-            console.error("ingredient unit change error");
+            console.error(`Ingredient unit change error: unit ${unit} does not supported`);
         }
         break;
+
+      // TODO: add more unit types
       case UnitType.OZ:
         switch(unit) {
           case UnitType.G:
@@ -33,11 +46,27 @@ export class UnitConverter {
           case UnitType.LB:
             return weight * 16;
           default:
-            console.error("ingredient unit change error");
+            console.error(`Ingredient unit change error: unit ${unit} does not supported`);
         }
         break;
+
+      case UnitType.MG:
+        switch (unit) {
+          case UnitType.MCG:
+            return weight / 1000;
+          case UnitType.MG:
+            return weight;
+          case UnitType.G:
+            return weight * 1000;
+          case UnitType.KG:
+            return weight * 1000000;
+          default:
+            console.error(`Ingredient unit change error: unit ${unit} does not supported`)
+        }
+        break;
+
       default:
-        console.error("ingredient unit change error");
+        console.error(`Ingredient unit change error: target unit ${targetUnit} does not supported`);
         break;
     }
     return 0;

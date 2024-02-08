@@ -12,7 +12,7 @@ export class UnitBtnComponent {
   @Output() unitChange: EventEmitter<UnitType> = new EventEmitter<UnitType>();
   @Output() valueHasChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  units: UnitType[] = [UnitType.G, UnitType.KG, UnitType.OZ, UnitType.LB];
+  units: UnitType[] = [UnitType.KG, UnitType.G, UnitType.MG, UnitType.MCG, UnitType.OZ, UnitType.LB];
 
   changeUnit(unit: UnitType) {
     this.unitChange.emit(unit);

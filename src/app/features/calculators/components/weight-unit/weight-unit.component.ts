@@ -18,8 +18,6 @@ export class WeightUnitComponent implements OnChanges{
   ngOnChanges(changes: SimpleChanges): void {
     if (this.targetUnit) {
       this.changeToTargetUnit(this.targetUnit!);
-    } else {
-      this.unitAutoConvert();
     }
   }
 

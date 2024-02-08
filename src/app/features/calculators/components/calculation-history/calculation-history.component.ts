@@ -35,15 +35,18 @@ export class CalculationHistoryComponent {
   }
 
   saveRecipeCache(): void {
-    if (this.newCacheName === '') {
+    let key: string = this.newCacheName;
+    if (key === '') {
       Swal.fire({
         title: 'Name Required',
         text: 'Please input a name for the history',
         icon: 'error',
       })
+      return;
     }
-    this.recipeService.saveRecipeCache(this.newCacheName, this.recipe!);
+    this.recipeService.saveRecipeCache(key, this.recipe!);
     this.caches = this.recipeService.getRecipeCacheKeys();
+    this.loadRecipeCache(key);
   }
 
   removeRecipeCache(key: string): void {
