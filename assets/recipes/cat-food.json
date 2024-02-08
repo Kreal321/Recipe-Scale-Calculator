@@ -73,7 +73,7 @@
           "name": "碳酸钙粉",
           "proportion": 0.006,
           "price": 0,
-          "weight": 13,
+          "weight": 53.12,
           "weightUnit": "G",
           "isAdditional": true
         },
@@ -81,15 +81,15 @@
           "name": "碘化钾",
           "proportion": 0.0000003375,
           "price": 0,
-          "weight": 13,
-          "weightUnit": "G",
+          "weight": 2.99,
+          "weightUnit": "MG",
           "isAdditional": true
         },
         {
           "name": "维生素E",
           "proportion": 0.00015,
           "price": 0,
-          "weight": 13,
+          "weight": 1.33,
           "weightUnit": "G",
           "isAdditional": true
         }
