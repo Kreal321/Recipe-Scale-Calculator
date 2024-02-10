@@ -1,8 +1,8 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {UnitType} from "../../../../core/enums/unitType.enum";
-import {UnitConverter} from "../../../../core/utils/unitConverter";
 
 import Swal from 'sweetalert2'
+import {WeightConverter} from "../../../../core/utils/unitConverters";
 
 @Component({
   selector: 'app-weight-unit',
@@ -21,17 +21,8 @@ export class WeightUnitComponent implements OnChanges{
     }
   }
 
-  unitAutoConvert() {
-    if (!UnitConverter.isMetric(this.unit!) || this.unit == UnitType.MCG) return;
-
-    while (this.weight && Math.abs(this.weight) < 0.01 && this.unit != UnitType.MCG) {
-      this.weight *= 1000;
-      this.unit = UnitConverter.metricUnitPrev(this.unit!);
-    }
-  }
-
   changeToTargetUnit(targetUnit: UnitType) {
-    this.weight = UnitConverter.convertWeight(this.weight!, this.unit!, targetUnit);
+    this.weight = WeightConverter.convert(this.weight!).from(this.unit!).to(targetUnit);
     this.unit = targetUnit;
   }
 

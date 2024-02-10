@@ -11,9 +11,8 @@ import {
 import {Calculation} from "../../../../core/models/calculation.model";
 import {Ingredient} from "../../../../core/models/ingredient.model";
 import {Recipe} from "../../../../core/models/recipe.model";
-import {UnitConverter} from "../../../../core/utils/unitConverter";
-import {Subject} from "rxjs";
 import {UnitType} from "../../../../core/enums/unitType.enum";
+import {WeightConverter} from "../../../../core/utils/unitConverters";
 
 @Component({
   selector: 'app-calculation-results-list',
@@ -38,7 +37,7 @@ export class CalculationResultsListComponent implements OnInit{
     let values: number[] = [];
     this.recipe?.ingredients.forEach((ingredient: Ingredient) => {
       if (!ingredient.isAdditional) {
-        let expectedTotalValue: number = UnitConverter.getConvertedWeight(ingredient, unit) / ingredient.proportion;
+        let expectedTotalValue: number = WeightConverter.convert(ingredient.weight!).from(ingredient.weightUnit!).to(unit) / ingredient.proportion;
         if (expectedTotalValue != 0) {
           values.push(expectedTotalValue);
         }
@@ -67,7 +66,7 @@ export class CalculationResultsListComponent implements OnInit{
 
   doUseAllCalculation(ingredient: Ingredient) {
     this.calculation!.weightUnit = this.recipe!.unit;
-    this.calculation!.totalWeight = UnitConverter.getConvertedWeight(ingredient, this.calculation!.weightUnit) / ingredient.proportion;
+    this.calculation!.totalWeight = WeightConverter.convert(ingredient.weight!).from(ingredient.weightUnit!).to(this.calculation!.weightUnit!) / ingredient.proportion;
     this.calculation = {...this.calculation!};
     this.valueHasChangedChange.emit(false);
     this.calculationChange.emit(this.calculation);

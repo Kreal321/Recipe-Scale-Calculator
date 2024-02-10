@@ -2,8 +2,7 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
 import {Ingredient} from "../../../../core/models/ingredient.model";
 import {UnitType} from "../../../../core/enums/unitType.enum";
 import {Calculation} from "../../../../core/models/calculation.model";
-import {UnitConverter} from "../../../../core/utils/unitConverter";
-import {Subject} from "rxjs";
+import {WeightConverter} from "../../../../core/utils/unitConverters";
 
 @Component({
   selector: 'app-ingredient-result-item',
@@ -23,7 +22,7 @@ export class IngredientResultItemComponent implements OnChanges{
 
   ngOnChanges(changes: SimpleChanges): void {
       this.weightUnit = this.calculation!.weightUnit;
-      this.weightActual = UnitConverter.getConvertedWeight(this.ingredient!, this.weightUnit);
+      this.weightActual = WeightConverter.convert(this.ingredient?.weight!).from(this.ingredient?.weightUnit!).to(this.weightUnit!);
       this.weightNeeded = this.calculation!.totalWeight * this.ingredient!.proportion;
       this.weightDiff = this.weightActual - this.weightNeeded;
 

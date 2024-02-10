@@ -2,6 +2,9 @@
 
 ## Version Changes
 
+### Version 0.0.4
+- Update unit conversion logic, add `WeightConverter`
+
 ### Version 0.0.3
 - Fix calculation error when using `mg` or `mcg`
 - Fix calculation history display error
