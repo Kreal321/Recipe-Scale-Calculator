@@ -1,4 +1,16 @@
 <div class="container my-4">
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="card shadow-sm p-3 mb-3 bg-light border-0">
+        <div class="d-flex flex-wrap align-items-center gap-3">
+          <h5 class="mb-0 me-3">Scale Recipe</h5>
+          <label for="targetWeight" class="form-label mb-0 me-2">Target Total Weight:</label>
+          <input id="targetWeight" type="number" class="form-control d-inline-block" [(ngModel)]="targetWeight" min="1" style="width: 120px;" />
+          <app-unit-btn [(unit)]="outputUnit"></app-unit-btn>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-lg-4 col-sm-12 mb-2">
       <div class="row">
@@ -14,10 +26,10 @@
       </div>
     </div>
     <div class="col-lg-8 col-md-12 col-sm-12 mb-4">
-      <app-ingredients-list [recipe]="recipe" [(valueHasChanged)]="valueHasChanged"></app-ingredients-list>
+      <app-ingredients-list [recipe]="recipe" [(valueHasChanged)]="valueHasChanged" [outputUnit]="outputUnit" [targetWeight]="targetWeight"></app-ingredients-list>
     </div>
     <div class="col-12 mb-4" *ngIf="recipe">
-      <app-calculation-results-list [recipe]="recipe" [(valueHasChanged)]="valueHasChanged" [(calculation)]="calculation"></app-calculation-results-list>
+      <app-calculation-results-list [recipe]="recipe" [(valueHasChanged)]="valueHasChanged" [(calculation)]="calculation" [outputUnit]="outputUnit" [targetWeight]="targetWeight"></app-calculation-results-list>
     </div>
   </div>
 </div>

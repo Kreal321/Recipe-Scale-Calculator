@@ -13,6 +13,8 @@ export class IngredientResultItemComponent implements OnChanges{
 
   @Input() ingredient: Ingredient | undefined;
   @Input() calculation: Calculation | undefined;
+  @Input() outputUnit: UnitType = UnitType.G;
+  @Input() targetWeight: number = 1000;
 
   weightNeeded: number | undefined;
   weightActual: number | undefined;
@@ -21,9 +23,9 @@ export class IngredientResultItemComponent implements OnChanges{
   weightUnit: UnitType | undefined;
 
   ngOnChanges(changes: SimpleChanges): void {
-      this.weightUnit = this.calculation!.weightUnit;
+      this.weightUnit = this.outputUnit;
       this.weightActual = WeightConverter.convert(this.ingredient?.weight!).from(this.ingredient?.weightUnit!).to(this.weightUnit!);
-      this.weightNeeded = this.calculation!.totalWeight * this.ingredient!.proportion;
+      this.weightNeeded = (this.calculation?.totalWeight ?? this.targetWeight) * this.ingredient!.proportion;
       this.weightDiff = this.weightActual - this.weightNeeded;
 
       this.color = "col-4 col-md-2 ";

@@ -6,6 +6,7 @@ import { RecipeBook } from "../../../../core/models/recipeBook.model";
 import Swal from 'sweetalert2'
 import {Recipe} from "../../../../core/models/recipe.model";
 import {Calculation} from "../../../../core/models/calculation.model";
+import { UnitType } from '../../../../core/enums/unitType.enum';
 
 
 @Component({
@@ -20,6 +21,9 @@ export class PageRecipeCalculatorComponent {
 
   valueHasChanged: boolean = true;
   calculation: Calculation | undefined;
+
+  outputUnit: UnitType = UnitType.G;
+  targetWeight: number = 1000;
 
   constructor(
     private recipeService: RecipeService,

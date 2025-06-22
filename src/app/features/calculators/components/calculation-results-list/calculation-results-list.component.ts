@@ -29,6 +29,9 @@ export class CalculationResultsListComponent implements OnInit{
   @Input() calculation: Calculation | undefined;
   @Output() calculationChange: EventEmitter<Calculation> = new EventEmitter<Calculation>();
 
+  @Input() outputUnit: UnitType = UnitType.G;
+  @Input() targetWeight: number = 1000;
+
   ngOnInit(): void {
     this.calculation = {} as Calculation;
   }
@@ -37,19 +40,15 @@ export class CalculationResultsListComponent implements OnInit{
     let values: number[] = [];
     this.recipe?.ingredients.forEach((ingredient: Ingredient) => {
       if (!ingredient.isAdditional) {
-        let expectedTotalValue: number = WeightConverter.convert(ingredient.weight!).from(ingredient.weightUnit!).to(unit) / ingredient.proportion;
-        if (expectedTotalValue != 0) {
-          values.push(expectedTotalValue);
+        const weightInOutputUnit = WeightConverter.convert(ingredient.weight!).from(ingredient.weightUnit!).to(unit);
+        let possibleBatch = weightInOutputUnit / ingredient.proportion;
+        if (possibleBatch > 0) {
+          values.push(possibleBatch);
         }
       }
-    })
-
-    values.sort((a:number, b:number) => {
-      return a - b;
     });
-
+    values.sort((a: number, b: number) => a - b);
     let half: number = Math.floor(values.length / 2);
-
     if (values.length % 2) {
       return values[half];
     }
@@ -57,17 +56,20 @@ export class CalculationResultsListComponent implements OnInit{
   }
 
   doBestMedianCalculation(): void {
-    this.calculation!.weightUnit = this.recipe!.unit;
-    this.calculation!.totalWeight = this.calculateBestMedianTotalWeight(this.calculation!.weightUnit);
-    this.calculation = {...this.calculation!};
+    this.calculation!.weightUnit = this.outputUnit;
+    this.calculation!.totalWeight = this.calculateBestMedianTotalWeight(this.outputUnit);
+    this.calculation!.totalPrice = 0;
+    this.calculation = { ...this.calculation! };
     this.valueHasChangedChange.emit(false);
     this.calculationChange.emit(this.calculation);
   }
 
   doUseAllCalculation(ingredient: Ingredient) {
-    this.calculation!.weightUnit = this.recipe!.unit;
-    this.calculation!.totalWeight = WeightConverter.convert(ingredient.weight!).from(ingredient.weightUnit!).to(this.calculation!.weightUnit!) / ingredient.proportion;
-    this.calculation = {...this.calculation!};
+    this.calculation!.weightUnit = this.outputUnit;
+    const weightInOutputUnit = WeightConverter.convert(ingredient.weight!).from(ingredient.weightUnit!).to(this.outputUnit);
+    this.calculation!.totalWeight = weightInOutputUnit / ingredient.proportion;
+    this.calculation!.totalPrice = 0;
+    this.calculation = { ...this.calculation! };
     this.valueHasChangedChange.emit(false);
     this.calculationChange.emit(this.calculation);
   }
