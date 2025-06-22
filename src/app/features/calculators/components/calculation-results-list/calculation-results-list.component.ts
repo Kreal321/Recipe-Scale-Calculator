@@ -55,10 +55,24 @@ export class CalculationResultsListComponent implements OnInit{
     return (values[half - 1] + values[half]) / 2;
   }
 
+  calculateTotalPrice(totalWeight: number): number {
+    if (!this.recipe) return 0;
+    let total = 0;
+    for (const ingredient of this.recipe.ingredients) {
+      if (!ingredient.price || ingredient.price <= 0) continue;
+      // Needed amount in ingredient's price unit
+      const neededInPriceUnit = WeightConverter.convert(totalWeight * ingredient.proportion)
+        .from(this.outputUnit)
+        .to(ingredient.priceUnit);
+      total += neededInPriceUnit * ingredient.price;
+    }
+    return total;
+  }
+
   doBestMedianCalculation(): void {
     this.calculation!.weightUnit = this.outputUnit;
     this.calculation!.totalWeight = this.calculateBestMedianTotalWeight(this.outputUnit);
-    this.calculation!.totalPrice = 0;
+    this.calculation!.totalPrice = this.calculateTotalPrice(this.calculation!.totalWeight);
     this.calculation = { ...this.calculation! };
     this.valueHasChangedChange.emit(false);
     this.calculationChange.emit(this.calculation);
@@ -68,7 +82,7 @@ export class CalculationResultsListComponent implements OnInit{
     this.calculation!.weightUnit = this.outputUnit;
     const weightInOutputUnit = WeightConverter.convert(ingredient.weight!).from(ingredient.weightUnit!).to(this.outputUnit);
     this.calculation!.totalWeight = weightInOutputUnit / ingredient.proportion;
-    this.calculation!.totalPrice = 0;
+    this.calculation!.totalPrice = this.calculateTotalPrice(this.calculation!.totalWeight);
     this.calculation = { ...this.calculation! };
     this.valueHasChangedChange.emit(false);
     this.calculationChange.emit(this.calculation);

@@ -1,6 +1,9 @@
 <div class="row align-items-center text-center">
   <div class="col-4 col-md-3 text-start">{{ingredient!.name}}</div>
-  <div class="col-2 d-none d-md-block">{{ingredient!.price | number: '1.1-3'}}</div>
+  <div class="col-2 d-none d-md-block">
+    <span *ngIf="ingredient!.price && ingredient!.priceUnit">{{ingredient!.price | number: '1.1-3'}} / {{ingredient!.priceUnit}}</span>
+    <span *ngIf="!ingredient!.price || !ingredient!.priceUnit">-</span>
+  </div>
   <div class="col-4 col-md-2">
     <app-weight-unit [weight]="weightNeeded" [unit]="weightUnit" [targetUnit]="ingredient?.weightUnit!"></app-weight-unit>
   </div>
